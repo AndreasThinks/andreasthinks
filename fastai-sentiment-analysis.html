@@ -1,130 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Twitter Sentiment Analysis with FastAI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Andreas Varotsis">
+<html lang="english">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Andreas Varotsis" />
 
-    <!-- Le styles -->
-    <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css" />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-      .tag-1 {
-        font-size: 13pt;
-      }
-      .tag-2 {
-        font-size: 10pt;
-      }
-      .tag-2 {
-        font-size: 8pt;
-      }
-      .tag-4 {
-        font-size: 6pt;
-     }
-    </style>
-    <link href="./theme/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="./theme/css/font-awesome.css" rel="stylesheet">
+        <meta name="twitter:creator" content="@AndreasThinks">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-    <link href="./theme/css/pygments.css" rel="stylesheet">
+<meta name="keywords" content="twitter, fastai, neural net, data-science, social media, data-science, " />
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<meta property="og:title" content="Twitter Sentiment Analysis with FastAI "/>
+<meta property="og:url" content="./fastai-sentiment-analysis.html" />
+<meta property="og:description" content="Since I’ve started the new Fast.ai deep learning course (which I absolutely recommend), I’ve been playing with using neural networks in all sorts of weird and wonderful new applications." />
+<meta property="og:site_name" content="Andreas Varotsis" />
+<meta property="og:article:author" content="Andreas Varotsis" />
+<meta property="og:article:published_time" content="2020-10-09T00:00:00+01:00" />
+<meta name="twitter:title" content="Twitter Sentiment Analysis with FastAI ">
+<meta name="twitter:description" content="Since I’ve started the new Fast.ai deep learning course (which I absolutely recommend), I’ve been playing with using neural networks in all sorts of weird and wonderful new applications.">
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="./theme/images/favicon.ico">
-    <link rel="apple-touch-icon" href="./theme/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./theme/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./theme/images/apple-touch-icon-114x114.png">
-
-    <link href="./" type="application/atom+xml" rel="alternate" title="Andreas Varotsis ATOM Feed" />
-
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="./index.html">Andreas Varotsis </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                          <li class="divider-vertical"></li>
-                  <li class="active">
-                    <a href="./category/data-science.html">
-						<i class="icon-folder-open icon-large"></i>data-science
-					</a>
-                  </li>
-                  <li >
-                    <a href="./category/review.html">
-						<i class="icon-folder-open icon-large"></i>Review
-					</a>
-                  </li>
-
-                          <ul class="nav pull-right">
-                                <li><a href="./archives.html"><i class="icon-th-list"></i>Archives</a></li>
-                          </ul>
-
-            </ul>
-            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to Twitter Sentiment Analysis with FastAI">
-                                        Twitter Sentiment Analysis with FastAI
-                                </a>
-<a href="http://twitter.com/share" class="twitter-share-button"
-   data-count="horizontal" data-via="AndreasThinks">Tweet</a>
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js">
-</script>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2020-10-09T00:00:00+01:00">
-        <i class="icon-calendar"></i>Fri 09 October 2020
-</abbr>
-<span class="label">By</span>
-<a href="./author/andreas-varotsis.html"><i class="icon-user"></i>Andreas Varotsis</a>
-<span class="label">Category</span>
-<a href="./category/data-science.html"><i class="icon-folder-open"></i>data-science</a>.
+        <title>Twitter Sentiment Analysis with FastAI  · Andreas Varotsis
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./theme/css/elegant.prod.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./theme/css/custom.css" media="screen">
 
 
-<span class="label">Tags</span>
-	<a href="./tag/twitter.html"><i class="icon-tag"></i>twitter</a>
-	<a href="./tag/fastai.html"><i class="icon-tag"></i>fastai</a>
-	<a href="./tag/neural-net.html"><i class="icon-tag"></i>neural net</a>
-	<a href="./tag/data-science.html"><i class="icon-tag"></i>data-science</a>
-	<a href="./tag/social-media.html"><i class="icon-tag"></i>social media</a>
-</footer><!-- /.post-info -->                </div>
-                <style type="text/css">/*!
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="./"><span class=site-name>Andreas Varotsis</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       .
+                                    >Home</a>
+                                </li>
+                                <li ><a href="./categories.html">Categories</a></li>
+                                <li ><a href="./tags.html">Tags</a></li>
+                                <li ><a href="./archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="./fastai-sentiment-analysis.html">
+                Twitter Sentiment Analysis with FastAI
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+            
+            <style type="text/css">/*!
 *
 * IPython notebook
 *
@@ -13400,85 +13351,116 @@ Successfully installed GetOldTweets3-0.0.11 cssselect-1.1.0 pyquery-1.4.1
 }
 </script>
 
-                </div><!-- /.entry-content -->
-        </article>
-</section>
-        </div><!--/span-->
 
-                <div class="span3 well sidebar-nav" id="sidebar">
-<ul class="nav nav-list">
-<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
-    <li><a href="https://twitter.com/AndreasThinks"><i class="icon-twitter-sign icon-large"></i>twitter</a></li>
-    <li><a href="https://www.linkedin.com/in/avarotsis/"><i class="icon-LinkedIn-sign icon-large"></i>LinkedIn</a></li>
-    <li><a href="https://www.kaggle.com/crimsoneer"><i class="icon-Kaggle-sign icon-large"></i>Kaggle</a></li>
 
-<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
-<li>
-<a href="./category/data-science.html">
-    <i class="icon-folder-open icon-large"></i>data-science
-</a>
-</li>
-<li>
-<a href="./category/review.html">
-    <i class="icon-folder-open icon-large"></i>Review
-</a>
-</li>
+             
+ 
+            
+            
+            
 
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 
-<li class="nav-header"><h4><i class="icon-twitter-sign"></i>Twitter</h4></li>
-<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 30000,
-  width: 'auto',
-  height: 300,
-  theme: {
-	shell: {
-	  background: '#f5f5f5',
-	  color: '#000000'
-	},
-	tweets: {
-	  background: '#ffffff',
-	  color: '#000000',
-	  links: '#1a50a1'
-	}
-  },
-  features: {
-	scrollbar: false,
-	loop: false,
-	live: false,
-	behavior: 'all'
-  }
-}).render().setUser('AndreasThinks').start();
+
+
+
+
+            <hr/>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-10-09T00:00:00+01:00">Oct 9, 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="./categories.html#data-science-ref">data-science</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="./tags.html#data-science-ref">data-science
+                    <span>1</span>
+</a></li>
+                <li><a href="./tags.html#fastai-ref">fastai
+                    <span>1</span>
+</a></li>
+                <li><a href="./tags.html#neural-net-ref">neural net
+                    <span>1</span>
+</a></li>
+                <li><a href="./tags.html#social-media-ref">social media
+                    <span>1</span>
+</a></li>
+                <li><a href="./tags.html#twitter-ref">twitter
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="https://twitter.com/AndreasThinks" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/avarotsis/" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" role="img" viewBox="0 0 512 512" fill="#fff"><rect width="512" height="512" rx="15%" fill="#0077b5"/><circle cx="142" cy="138" r="37"/><path stroke="#fff" stroke-width="66" d="M244 194v198M142 194v198"/><path d="M276 282c0-20 13-40 36-40 24 0 33 18 33 45v105h66V279c0-61-32-89-76-89-34 0-51 19-59 32"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
 </script>
 
-</ul>        </div><!--/.well -->
-
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <address id="about">
-                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
-                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
-        </address><!-- /#about -->
-
-        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
-                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
-
-
-
-    <!-- Le javascript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./theme/js/jquery-1.7.2.min.js"></script>
-    <script src="./theme/js/bootstrap.min.js"></script>
-  </body>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>
